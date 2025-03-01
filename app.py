@@ -8,9 +8,9 @@ import subprocess
 app = Flask(__name__)
 
 # Load the Vosk model
-MODEL_PATH = "model/en"
+MODEL_PATH = "model/fr"
 if not os.path.exists(MODEL_PATH):
-    raise ValueError("Vosk model not found! Download and place it in 'model/en'")
+    raise ValueError("Vosk model not found!")
 
 model = vosk.Model(MODEL_PATH)
 

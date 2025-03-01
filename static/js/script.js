@@ -7,7 +7,7 @@ let audioChunks = [];
 recordBtn.addEventListener("click", async () => {
     if (mediaRecorder && mediaRecorder.state === "recording") {
         mediaRecorder.stop();
-        recordBtn.textContent = "🎤 Start Recording";
+        recordBtn.textContent = "🎤 Commencer l'enregistrement";
     } else {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         mediaRecorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
@@ -30,18 +30,18 @@ recordBtn.addEventListener("click", async () => {
                 });
 
                 if (!response.ok) {
-                    throw new Error("Server returned an error.");
+                    throw new Error("Le serveur a renvoyé une erreur.");
                 }
 
                 const data = await response.json();
-                resultText.textContent = `Transcription: ${data.text}`;
+                resultText.textContent = `Transcription : ${data.text}`;
             } catch (error) {
-                console.error("Error:", error);
-                resultText.textContent = "Error processing audio. Check console.";
+                console.error("Erreur:", error);
+                resultText.textContent = "Erreur lors du traitement de l'audio. Vérifiez la console.";
             }
         };
 
         mediaRecorder.start();
-        recordBtn.textContent = "🛑 Stop Recording";
+        recordBtn.textContent = "🛑 Arrêter l'enregistrement";
     }
 });
